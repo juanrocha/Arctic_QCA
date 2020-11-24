@@ -1,0 +1,15 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.pdf
+*.bib
+*.html
+*.rdb
+*.rdx
+.DS_Store
+*.csv
+*.tex
+*.log
+*.RData
+Arctic_QCA.Rproj

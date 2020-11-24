@@ -1,0 +1,87 @@
+---
+title: "Upscaling the resilience assessment through comparative analysis"
+author: |
+    | \small Juan Rocha^1,2,3^, Carla Lanyon^1^, Miriam Huitric^1^, Garry Peterson^1^
+    | \small
+    | \small ^1^Stockholm Resilience Centre, Stockholm University, Kräftriket 2B, 10691 Stockholm
+    | \small ^2^Future Earth, The Swedish Royal Academy of Sciences, Lilla Frescativägen 4A, 104 05 Stockholm
+    | \small ^3^South American Institute for Resilience and Sustainability Studies, Maldonado, Uruguay
+
+    
+
+
+abstract: |
+  Panarchy has marked the academic career of many scholars and practitioners facing environmental problems. Initially introduced as a conceptual framework and set of metaphors, panarchy has gained the attention of scholars across many disciplines and its ideas continue to inspire further conceptual developments. To what extent these concepts have developed, theorized and empirically grounded are questions we address by reviewing the literature with qualitative methods and machine learning. We find that the adaptive cycle is the feature of panarchy that has attracted more attention. Challenges remain in empirically grounding the metaphor, but recent theoretical and empirical work offer some avenues for future research.
+
+bibliography: panarchy.bib
+# csl: nature.csl
+output:
+  pdf_document:
+    dev: pdf
+    keep_tex: no
+    toc: no
+    latex_engine: xelatex
+  word_document:
+    toc: no
+citecolor: blue
+documentclass: article
+font: Arial
+fontsize: 10pt
+
+linkcolor: blue
+urlcolor: blue
+header-includes:
+- \usepackage{dcolumn, rotating, longtable, lineno, float, fontspec, array, tabularx}
+- \setmainfont{Arial}
+- \linenumbers
+- \renewcommand{\abstractname}{}
+- \graphicspath{{figures/}}
+- \usepackage[margin=2.5cm]{geometry}
+---
+
+# Outline:
+
+- Intro (800)
+
+- Methods (600)
+
+- Results (1000)
+
+- Discussion (1000)
+
+- Conclusions (400)
+
+# Introduction
+
+800w
+
+# Methods
+
+600w
+# Results
+
+1000w
+
+# Discussion
+(1000w)
+
+
+# Conclusion
+(400w)
+
+
+# References
+
+<div id="refs"></div>
+
+
+
+\pagebreak
+
+# Supplementary Material {#sec:SM}
+
+\renewcommand\thefigure{S\arabic{figure}}
+\renewcommand\thetable{S\arabic{table}}
+\setcounter{table}{0}
+\setcounter{figure}{0}
+
