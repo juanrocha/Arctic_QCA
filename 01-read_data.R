@@ -45,7 +45,7 @@ df1 <- df1 %>%
         1,   # Dempster Caribou
         1,   # Finmark fishing
         0,   # Finmark reindeer
-        0.5, # food security nunavut
+        0,   # food security nunavut // changed from original suggested from Garry
         0,   # Greenland Disco bay
         0,   # Greenland mobility
         0,   # Greenland Paamiut cod
