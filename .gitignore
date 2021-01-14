@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.RApp.history
 *.pdf
 *.bib
 *.html
@@ -13,3 +14,7 @@
 *.log
 *.RData
 Arctic_QCA.Rproj
+*.png
+*.eps
+*.jpg
+*.tiff

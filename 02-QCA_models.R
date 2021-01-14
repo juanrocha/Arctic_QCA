@@ -11,8 +11,8 @@ GGally::ggpairs(df1, columns = 2:5)
 
 # example with one variable
 df1 %>% 
-    mutate(calKNO = calibrate (DIV, thresholds= "e = -2, c = 0.5, i = 2")) %>%
-    ggplot(aes(DIV, calKNO)) + geom_point()
+    mutate(K_c = calibrate (K, thresholds= "e = -2, c = 0.5, i = 2")) %>%
+    ggplot(aes(K, K_c)) + geom_point(aes(color = as_factor(output))) 
 
 # Make copies of the data frame
 df0 <- df1 # unmodified copy
@@ -31,16 +31,16 @@ df1[, 2:9] <- df0[, 2:9] %>%
 
 ## Using empirical distributions
 ## truth table fails when 0.5 if a resulting value of the calibration
-df2[, 2:5] <- df2[,2:5] %>%
+df2[, 2:9] <- df2[,2:9] %>%
     map_df(calibrate, logistic = FALSE, ecdf = TRUE,
            thresholds= "e = -3, c = -1, i = 3")
 
 ## Totally fuzzy and relative method.
-df3[, 2:5] <- df3[,2:5] %>%
+df3[, 2:9] <- df3[,2:9] %>%
     map_df(calibrate, method = "TFR")
 
 ## crisp dataset (only 0,1)
-df4[, 2:5] <- df4[,2:5] %>%
+df4[, 2:9] <- df4[,2:9] %>%
     map_df(calibrate,type = "crisp", threshold = 0.5)
 
 df1 <- df1 %>% as.data.frame()
@@ -57,50 +57,50 @@ GGally::ggpairs(df1, columns = 2:5)
 
 tt_RES <- truthTable(
     data = as.data.frame(df1), outcome= "RES", 
-    conditions= c('NAV', 'DIV', 'KNO', 'SFO'),  
+    conditions= c('N', 'D', 'K', 'S'),  
     neg.out= FALSE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
-    PRI=TRUE, incl.cut = 0.95)
+    PRI=TRUE, incl.cut = 0.85)
 tt_RES
 
 tt_res <- truthTable(
     data = as.data.frame(df1), outcome= "RES", 
-    conditions= c('NAV', 'DIV', 'KNO', 'SFO'),  
+    conditions= c('N', 'D', 'K', 'S'),   
     neg.out= TRUE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
     PRI=TRUE, incl.cut = 0.95)
 
 tt_TRA <- truthTable(
     data = as.data.frame(df1), outcome= "TRA", 
-    conditions= c('NAV', 'DIV', 'KNO', 'SFO'),  
+    conditions= c('N', 'D', 'K', 'S'),  
     neg.out= FALSE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
     PRI=TRUE, incl.cut = 0.95)
 
 tt_tra <- truthTable(
     data = as.data.frame(df1), outcome= "TRA", 
-    conditions= c('NAV', 'DIV', 'KNO', 'SFO'),  
+    conditions= c('N', 'D', 'K', 'S'),  
     neg.out= TRUE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
     PRI=TRUE, incl.cut = 0.95)
 
 tt_FAI <- truthTable(
     data = as.data.frame(df1), outcome= "FAI", 
-    conditions= c('NAV', 'DIV', 'KNO', 'SFO'),  
+    conditions= c('N', 'D', 'K', 'S'),   
     neg.out= FALSE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
     PRI=TRUE, incl.cut = 0.95)
 
 tt_fai <- truthTable(
     data = as.data.frame(df1), outcome= "FAI", 
-    conditions= c('NAV', 'DIV', 'KNO', 'SFO'),  
+    conditions= c('N', 'D', 'K', 'S'),  
     neg.out= TRUE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
     PRI=TRUE, incl.cut = 0.95)
 
 tt_RES$minmat %>% apply(., 1, max)
 
-tt$minmat %>%
+tt_RES$minmat %>%
     as_tibble() %>%
     rownames_to_column("case") %>%
     pivot_longer(cols = 2:last_col(), 
@@ -118,15 +118,16 @@ necessity <- superSubset(
     incl.cut = 0.95) #
 
 # Parameters of fit for necessary conditions
-pof(necessity$coms, df1, outcome = "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), neg.out = F) 
+pof(necessity$coms, df1, outcome = "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), neg.out = FALSE) 
 # parameters of fit for necessary conditions in the case of negated outcome
-pof(necessity$coms, df1, outcome= "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), neg.out=T) 
+pof(necessity$coms, df1, outcome= "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), neg.out=TRUE) 
 
 
 #### Sufficiency conditions ####
+
 sufficiency <- superSubset(
-    data = df1, 
-    outcome= "FAI", 
+    data = as.data.frame(df1), 
+    outcome= "RES", 
     conditions= c('NAV', 'DIV', 'KNO', 'SFO'), 
     relation = "sufficiency", 
     incl.cut = 1) 
@@ -135,8 +136,8 @@ sufficiency <- superSubset(
 # sufficiency$incl.cov
 
 # Parameters of fit for sufficiency conditions
-pof(sufficiency$coms, df1, outcome= "FAI", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), relation = 'suf', neg.out=F) 
-pof(sufficiency$coms, df1, outcome= "FAI", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), relation = 'suf', neg.out=T) 
+pof(sufficiency$coms, df1, outcome= "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), relation = 'suf', neg.out=FALSE) 
+pof(sufficiency$coms, df1, outcome= "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), relation = 'suf', neg.out=TRUE) 
 
 
 
@@ -144,18 +145,20 @@ pof(sufficiency$coms, df1, outcome= "FAI", conditions= c('NAV', 'DIV', 'KNO', 'S
 #### solutions ####
 ## boolean mnimization or parsimonious solution
 parsol <- minimize(
-    tt_RES, details = TRUE, 
+    tt_FAI, details = TRUE, 
     show.cases= TRUE)
 
 ## complex solution
-cs <- minimize(tt, include = "?", details = TRUE)
+cs <- minimize(tt_FAI, include = "?", details = TRUE)
     
-    eqmcc(tt, details=T, show.cases=T, outcome= "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'))
 
 ## intermediate solution
-is <- eqmcc(tt, details=T, include='?', show.cases=T, direxp=c(1,1,1,1), outcome= out, conditions= c('NAV', 'DIV', 'KNO', 'SFO'))
-# factorize(ParSol)
+is <- minimize(tt_RES, include = "?", details = TRUE, dir.exp = "1,1,1,1")
+is <- minimize(tt_FAI, include = "?", details = TRUE, dir.exp = "0,0,0,0")    
+    
+# factorize(parsol)
+# parsol$PIchart
 
-parsol$PIchart
+parsol
 cs
 is
