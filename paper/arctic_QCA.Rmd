@@ -11,10 +11,10 @@ author: |
 
 
 abstract: |
-  Resilience is the capacity of any system to maintain its function, structure and identity despite disturbances. Assessing resilience has been elusive due to high levels of abstraction that are difficult to empirically test, or the lack of high quality data required once appropriate proxies are identified. Most resilience assessments are limited to specific situation arenas, making comparision one of the unresolved challenges in resilience assessments. Here we show how leveraging comparative analysis can provide insights on how Arctic communities (N = 34) can best deal with social and environmental change. We found that the capacity to self-organize, combining different types of knowledge, and navigating change and uncertanty are sufficient conditions for Arctic communities whose livelihoods have been resilient, or for communities whose livelihoods have been transformed. Resilience can be lost when these features are absent even if communities nurture diversity. Our study provides an alternative perspective on how to assess resilience by leveraging comparsion across cases. It also identify governance patways to support adaptations and transformations in the Arctic, a geography with some of the most dramatic social and natural challenges to come. 
+  Resilience is the capacity of any system to maintain its function, structure and identity despite disturbances. Assessing resilience has been elusive due to high levels of abstraction that are difficult to empirically test, or the lack of high quality data required once appropriate proxies are identified. Most resilience assessments are limited to specific situation arenas, making comparision one of the unresolved challenges in resilience assessments. Here we show how leveraging comparative analysis can provide insights on how Arctic communities (N = 34) can best deal with social and environmental change. We found that the capacity to self-organize, and nurturing diversity are sufficient conditions for Arctic communities whose livelihoods have been resilient, or for communities whose livelihoods have been transformed. Our study provides an alternative perspective on how to assess resilience by leveraging comparsion across cases. It also identify governance patways to support adaptations and transformations in the Arctic, a geography with some of the most dramatic social and natural challenges to come. 
 
 bibliography: arctic_QCA.bib
-# csl: nature.csl
+csl: nature.csl
 output:
   pdf_document:
     dev: pdf
@@ -47,33 +47,9 @@ load(here("data", "cleaned_df.RData"))
 load(here("data", "coords.RData"))
 ```
 
-
-# Outline:
-
-- Intro (800)
-    - Resilience: what it is? how is it measured?
-    - Current options: resilience assessemnts.
-    - Quantitative approaches: time series, luxury data
-    - Alternatives beyond single case studies?
-- Methods (600)
-    - ARR: Transdisciplinary process
-    - Template co-design
-    - Case study selection
-    - QCA
-- Results (1000)
-    - Descriptive states: 30-35 cases: time and spatial scales. Regions / countries. Drivers and challenges
-    - Calibration steps
-    - Resilience as output: necessary and sufficient conditions
-    - Loss of resilience as output: necessary and sufficient conditions
-- Discussion (1000)
-    - Why we develop a third-tier of variables: Berkes alone or Biggs alone was not enought, too ambiguous to assign precise coding.
-    - Low number of transformation cases limits the application of the method
-    - Leveraging the power of comparison.
-- Conclusions (400)
-
 # Introduction
 
-[800w]
+[~920w]
 
 Resilience is the capacity of any system to absorb disturbance and reorganize while undergoing change so as to still retain essentially the same function, structure, feedbacks, and therefore identity [@Anonymous:2016fv]. There are over 70 definitions of resilience [@Fisher:2015fj], making it a hard concept to grasp, to operationalize, and empirically ground. How does one measure resilience remains a non-trivial challenge and a key frontier of active research [@Liu:2020ku; @Gao:2016dn; @Scheffer:2009p4449].
 
@@ -89,8 +65,8 @@ Here we propose a qualitative comparative method for upscaling resilience assess
 
 \begin{figure*}[ht]
 \centering
-\includegraphics[width = 7in, height = 3.5in]{fig1_map_vars}
-\caption{\textbf{Arctic case studies}}
+\includegraphics[width = 6.5in, height = 3in]{fig1_map_stats}
+\caption{\textbf{Arctic case studies} `r nrow(coords)` cases were analyzed across Arctic nations (A,B) covering a range of sectors (C) and responding to different types of drivers (D). The time spam of our case studies depend on what is reported on literature reviews. While most concentrate on contemporary issues, some cases date back centuries (E). The category "other" in (B) refers to the case of the Bering Strait which lies in international waters between Russia and USA.}
 \label{fig:map}
 \end{figure*}
 
@@ -100,7 +76,7 @@ How can Arctic communities respond to these social and ecological challenges? Wi
 
 # Methods
 
-[600w]
+[~1000w]
 
 To answer these questions we first revisited the literature on adaptive capacity and designed a coding scheme for capturing elements of resilience across case studies. We co-designed and co-developed a template to guide case study selection, literature reviews, and validation with experts. Then we applied qualitative comparative analysis to infer necessary and sufficient conditions for resilience, transformations or resilience loss in `r nrow(coords)` communities across the Arctic. Below we describe in detail each of these steps.
 
@@ -109,52 +85,86 @@ To answer these questions we first revisited the literature on adaptive capacity
 \begin{figure*}[ht]
 \centering
 \includegraphics[width = 7in, height = 4in]{vars_dendrogram}
-\caption{\textbf{Adaptive capacity}}
+\caption{\textbf{Adaptive capacity} We expanded the original proposition by Berkes et al to include a third tier variables that enable the identification of adaptive capacity features from literature reviews and expert elicitation. The variables were co-designed and tested with a broad range of stakeholders.}
 \label{fig:vars}
 \end{figure*}
 
-The Arctic Resilience Assessment was commissioned by the Arctic council under the Swedish Ministry of Environment chairmanship of the council, and delivered under the US chairmanship. The assessment was lead by the Stockholm Resilience Centre and the Stockholm Environmental Institute. It builds on collaborations between the Arctic countries, Indigenous peoples in the region, and several observers that include NGOs and academic institutions. Table X presents the different interest groups represented in the process.
+The Arctic Resilience Assessment was commissioned by the Arctic council under the Swedish Ministry of Environment chairmanship of the council. The assessment was lead by the Stockholm Resilience Centre and the Stockholm Environmental Institute [@Carson:2016ts]. It builds on collaborations between the Arctic countries, Indigenous peoples in the region, and several observers that include NGOs and academic institutions. Table X presents the different interest groups represented in the process.
 
-**Co-designing a case study template**: We initially designed a template to capture social-ecological dynamics from literature reviews and expert elicitation inspired by the Regime Shifts database [@Biggs:2018hx]. Our first template was however modified to incorporate the feedback, needs and priorities of the different actor involved (Table X). We modified and tested the gathering data tool through workshops and focus groups that took place in Washigton, Tromsø, Bodø, and Stockholm (2015-16). The group also guided our selection of case studies to prioritize their most acute needs, and secure an heterogeneous selection of studies across problem issues and geographies.
+**Co-designing a case study template**: We initially designed a template to capture social-ecological dynamics from literature reviews and expert elicitation inspired by the Regime Shifts database [@Biggs:2018hx]. Our first template was however modified to incorporate the feedback, needs and priorities of the different actors involved (Table X). We modified and tested the gathering data tool through workshops and focus groups that took place in Washington, Tromsø, Bodø, and Stockholm (2015-16). The group also guided our selection of case studies to prioritize their most acute needs, and secure an heterogeneous selection of studies across problem issues and geographies.
 
-The template was designed to capture key aspects of resilience and adaptive capacity based on literature reviews. The coder assigns whether the social-ecological system is resilient if the main livelihoods of the communities described are maintained over time, despite social and ecological disturbances. A case is coded as transformation if a community shift their main source of livelihoods to a different set, but manages to continue developing within the same place. A case is coded as loss of resilience where the main livelihoods are lost, no new livelihoods are established, and symptoms of community collapse long last such as emigration, simplified local economies, high unemployment or high substance abuse (Fig \ref{fig:map}). When possible, the templates were validated by experts in the topics who suggested new literature sources or improve our interpretation of the initial review. All templates collected are available in <XYZ> data repository.
+The template was designed to capture key aspects of resilience and adaptive capacity based on literature reviews. The coder assigns whether the social-ecological system is resilient if the main livelihoods of the communities described are maintained over time, despite social and ecological disturbances. A case is coded as transformation if a community shifts their main source of livelihoods to a different set, but manages to continue developing within the same place. A case is coded as loss of resilience where the main livelihoods are lost, no new livelihoods are established, and symptoms of community collapse long last such as emigration, simplified local economies, high unemployment or high substance abuse (Fig \ref{fig:map}). When possible, the templates were validated by experts in the topics who suggested new literature sources or improve our interpretation of the initial review. All templates collected are available in (XYZ) data repository.
 
-**Qualitative comparative analysis**: Based on the templates, we coded a matrix of presence / absence of the third-tier variables used as proxies of adaptive capacity (Fig \ref{fig:vars}). A category is coded as -1 if the evidence in the literature or expert elicitation suggest that the case lacks that dimension, 1 if the evidence suggest presence of the category, or 0 if there is no evidence available. We aggregated the scores at the first-tier level by summing across the the third-level categories. Qualitative comparative analysis was then used to investigate necessary and sufficient conditions for a case to be resilient, transformation, or loss of resilience.
+**Qualitative comparative analysis**: Based on the templates, we coded a matrix of presence / absence of the third-tier variables used as proxies of adaptive capacity (Fig \ref{fig:vars}). A category is coded as -1 if the evidence in the literature or expert elicitation suggest that the case lacks that dimension, 1 if the evidence suggest presence of the category, or 0 if there is no evidence available. We aggregated the scores at the first-tier level by summing across the third-level categories. Qualitative comparative analysis was then used to investigate necessary and sufficient conditions for a case to be resilient, transformation, or loss of resilience.
 
 Qualitative comparative analysis (QCA) is a method that leverage boolean algebra [@Boole:1854ww] and (fuzzy) set theory to investigate research questions with intermediate number of cases [@Ragin:2009te]. While its origins are rooted in political science and sociology [@Rihoux:2013jx], the method has found application in several social-ecological systems problems [@Crona:2015ii; @Anonymous:2013iw; @Basurto:2013ev]. In our analysis, the four dimensions for adaptive capacity [@Berkes:2003wx] were used as conditions, and the outputs were coded as resilience loss, transformation or resilience based on the templates. First, we calibrated thresholds for inclusion or exclusion using a logistic function where values lower than -2 were excluded, +2 included, and -0.5 was assumed to be maximum ambiguity. For example, if a case has a score >2 for variables under the category "_nurturing diversity for reorganization and renewal_", the case is set to belong to the set **D**, which is a shorthand for diversity; if the score was <2, it does not belong to the set, which in QCA is denoted as **d**. Throughout the paper, capital letters are used to denote belonging to a set or presence of a feature, and small caps used for its absence or negation.
 
-Next, we computed subsets of necessary and sufficient conditions for each possible output and its negation. We used the truth table of our case studies --a cross tabulation of the number of cases in our sample against all possible combinations of conditions and outputs-- to perform boolean minimization and identify parsimonious, complex, and intermediate solutions. These solutions (or causal recipes in the literature) suggest combination of conditions that leads to an output (being resilient) to be true or false. In other words, it helps us identify which features increase adaptive capacity, and hence resilience, in the Arctic communities in our study. All the analysis was performed in `R` [REF] using the `QCA` package [REF]. 
+Next, we computed subsets of necessary and sufficient conditions for each possible output and its negation. We used the truth table of our case studies --a cross tabulation of the number of cases in our sample against all possible combinations of conditions and outputs-- to perform boolean minimization and identify parsimonious, complex, and intermediate solutions. These solutions (or causal recipes in the literature) suggest a combination of conditions that leads to an output (being resilient) to be true or false. In other words, it helps us identify which features increase adaptive capacity, and hence resilience, in the Arctic communities in our study. All the analysis was performed in `R` [@RCoreTeam:2012wf] using the `QCA` package [@Thiem:2012dq; @Dusa:2019gp]. All the code used in our analysis is available at: [https://github.com/juanrocha/Arctic_QCA](https://github.com/juanrocha/Arctic_QCA)
 
 # Results
 
-1000w
+[~790w]
 
-The `r nrow(coords)` cases analysed showcase some of the challenges that Arctic communities are currently facing._ _The most common challenges across our case studies are XYZ. Countries distribution sentence. Time distribution sentence. TODO: Maybe change fig 1 to include time lines and a barplot with drivers?_
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 7in, height = 3.5in]{fig3_calibration_heatmap}
+\caption{\textbf{Calibrating adaptive capacity} Scores were calculated by adding all variables grouped by first-tier categories: i) learning to live with change and uncertainty (N), ii) nurturing diversity for reorganization and renewal (D), iii) combining different types of knowledge for learning (K), and iv) creating opportunities for self organization (S). Cases and adaptive capacity features are clustered around their scores, showing groups of resilient and transformation cases in the top, and resilience loss in the bottom (A). A logistic function was used to calibrate the raw data (B) for input into the qualitative comparative analysis. }
+\label{fig:cal}
+\end{figure*}
 
-We tested different approaches for calibrating the data and found that a logistic function best tailored our data needs (Fig XX). Alternative approaches such as the empirical cumulative distribution function, or the totally fuzzy relative method, use the features of the underlying variable to set thresholds for the inclusion or exclusion to a set [REF]. These data driven approaches are agnostic to the meaning of variable values. But in our case, the values zero have special meaning, it shows the adaptive capacity features for which there is maximum ambiguity (Fig XX). The logistic function allow us to incorporate that knowledge into the calibration of fuzzy sets [REF] by setting thresholds for inclusion and exclusion as (2, -2) respectively, and maximum ambiguity as -0.5. The wider the inclusion / exclusion threshold ($>|2|$), the more fuzzy is the calibration. In the limit where the inclusion, exclusion, and ambiguity thresholds are the same, the data is not fuzzy anymore, but becomes crisp sets (only accepts values 0 or 1). The rest of our analysis is done with fuzzy sets because it leverage the diversity of features to cover many of the possible combinations of cases. A crisp set analysis does not converge given poor coverage in the truth table.
+The `r nrow(coords)` cases analysed showcase some of the challenges that Arctic communities are currently facing (Fig \ref{fig:map}). The sectors most impacted across countries are fisheries and hunting, both for commercial and subsistence purposes. The most common challenges across our case studies are climate (29 cases), geopolitical conflicts (19), mining (11), and other socio-economic drivers (15). The country with most cases in our dataset is Canada (9), while Sweden, Finland and Iceland have only two cases each. While most of our case studies describe relatively recent phenomena, one of them focuses on the XIX and XX century, and another goes back to the 1600's. The time span reported in each case study depends on the literature reviewed.
+
+We tested different approaches for calibrating the data and found that a logistic function best tailored our data needs (Fig. \ref{fig:cal}). Alternative approaches such as the empirical cumulative distribution function, or the totally fuzzy relative method, use the distribution features of the underlying variable to set thresholds for the inclusion or exclusion to a set [@Thiem:2012dq; @Dusa:2019gp]. These data driven approaches are agnostic to the meaning of variable values. But in our case, the values zero have special meaning, it shows the adaptive capacity features for which there is maximum ambiguity (Fig \ref{fig:cal}). The logistic function allows us to incorporate that knowledge into the calibration of fuzzy sets [@Dusa:2019gp] by setting thresholds for inclusion and exclusion as (2, -2) respectively, and maximum ambiguity at -0.5. The wider the inclusion / exclusion threshold ($>|2|$), the more fuzzy is the calibration. In the limit where the inclusion, exclusion, and ambiguity thresholds are the same, the data is not fuzzy anymore, but becomes crisp sets (only accepts values 0 or 1). The rest of our analysis is done with fuzzy sets because it leverage the diversity of features to cover many of the possible combinations of cases. A crisp set analysis does not converge given poor coverage in the truth table.
 
 
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 6in, height = 3in]{fig4_truth_tables}
+\caption{\textbf{Truth tables} The truth tables show the distribution of cases across logical combinations. With 4 adaptive capacity features, there are 16 plausible combinations of which our cases only cover 7 of them (A). The sufficiency inclusion score (incl) indicates how much a logical combination is sufficient for an outcome (e.g. OUT Resilience = True), while the proportion of reduction in inconsistency (PRI) reveals potential contradictions with respect to all other combinations.}
+\label{fig:ttable}
+\end{figure*}
 
-Truth table should come early
 
-* Figure 1. Map of cases + dendrogram with nested variables?  
-* Figure 2. Heatmaps 1-2-3 tiers
-* Figure 3. Distribution of codings + calibration thresholds.
-* Figure 4. Necessary and Sufficient conditions for resilience
-* Figure 5. Necessary and sufficient conditions for rersilience loss
-*
+The truth table reveals that our `r nrow(coords)` Arctic cases only capture 7 out of the 16 possible combinations of adaptive capacity features (Fig. \ref{fig:ttable}). In qualitative comparative analysis, a case can only belong or not to a set. With the four features of adaptive capacity introduced [@Berkes:2003wx], there are $2^4$ combinations. Despite having over twice as many cases as possible combinations, our coverage is less than half. This phenomena of limited diversity is common in the social sciences [@Dusa:2019gp; @Ragin:2009te], and QCA leverages the unobserved combinations (logical reminders) to optimize different types of boolean minimization. For example, the logical combination **nDks** or **ndKs** reflect cases that could be classified simultaneously as belonging to the sets of resilient, transformations, or resilience loss (Fig \ref{fig:ttable}B). However, the sufficiency inclusion score (incl) and the proportional reduction of inconsistency (PRI) suggest that such cases are more likely to belong to the loss of resilience set. 
 
+
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 6in, height = 3in]{fig5_necessary_and_sufficient}
+\caption{\textbf{Necessary and sufficient conditions} The analysis of necessity and sufficiency compares observed combinations of features that can be relevant for an output. These combinations are additive (set union, logical OR) for necessity, and multiplicative (set intersection, logical AND) for sufficiency. The coverage and inclusion statistics help comparing the contribution of features to the outcome, while the proportional reduction of inconsistency (PRI) and relevance of necessity (RoN) weight the contribution to the solution with respect to others.}
+\label{fig:necsuf}
+\end{figure*}
+
+The analysis of necessity and sufficiency reveals that resilient and transformation cases are very similar. Both have the same sufficient conditions with relatively similar scores for inclusion and consistency reduction (Fig \ref{fig:necsuf}A.). While our cases have relatively low coverage for features describing the capacity to self-organize, the highest scores for inconsistency reduction is attributed to cases who rank high on self-organization, even in the absence of other attributes such as the ability to navigate uncertainty (N) or nurturing diversity (D). The analysis of necessity, however, show very similar results for all three possible outcomes (resilience, transformation, or loss of resilience): high scores in the ability to navigate change and uncertainty (N), nurturing diversity (D), or combining different types of knowledge (K) are necessary conditions for all the three outcomes.
+
+We derived parsimonious solutions, or a minimum set of conditions, that make a case resilient, transform or erode resilience, by means of boolean minimization (Fig \ref{fig:sols}). We found again that the solutions for resilience and transformation cases are very similar, where the higher combination of features falls on cases with strong ability to self-organize (S). On average, a resilient case need to do well in at least 2 out of the 4 adaptive capacity features, and the strongest contributions are for cases whose causal recipe includes $K*S$ or $N*D*K$. Transformation cases follow a similar logic, but a case can still transform in the absence of the triplet $N*D*K$, but certainly in the presence of practices that nurture diversity (D). Lastly, cases with resilience loss are observed especially where 3 out of the 4 features are missing ($n*k*s$), even in the presence of different types of knowledge and the capacity to self-organize. 
+
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 6in, height = 3in]{fig6_solutions}
+\caption{\textbf{Parsimonious solutions} Minimal set of conditions (rows) that can lead to different types of outcomes (resilience, transformations or loss of resilience). Each term is a set of sufficient conditions that combined lead to a full minimal parsimonious solution. For example, the outcome transformation can be reached when a case $n*d*K*S + D*s \rightarrow T$. Inclusion and coverage for sufficiency (covS, inclS), the unique coverage (covU), and the proportional reduction in inconsistency (PRI) allow comparing the different contributions of each term to the solutions.}
+\label{fig:sols}
+\end{figure*}
 
 # Discussion
-(1000w)
 
-- Principles for building resilience didnt work.
-- The aggregation by summing has the implicit assumption that all categories are equally weighted. That is, the researcher does not have an apriori bias or inclination to decide which variables could be more important than others for adaptive capacity. As theory develops, one could relax such assumption.
-- Limited by literature. Eg. issues of gender.
+[824w]
 
+
+In summary, our results show that all features of adaptive capacity are important for resilience and transformation, but stresses the importance of the capacity to self-organize and nurturing diversity of social and ecological sources of memory. We observe that despite many communities can rank high in a few of these capacities, it is not enough with being strong in one or few aspects of adaptive capacity. Many of the communities studied are showing symptoms of resilience loss and no sign of transformations or shifting to alternative livelihoods (N = `r coords %>% filter(output == 0) %>% tally() %>% pull()`). Therefore, management and governance arrangements that help communities build their adaptive capacities are welcome in fora such as the Arctic council. Examples include strengthening the ability of communities to manage their territories, having the autonomy to craft their own rules, and getting support for long term monitoring or a legal framework that promotes autonomy. Another example is nurturing networks of knowledge exchange where people can share success and failure stories for tackling similar issues, from climate change impacts, to herd management, or dealing with novel economic activities that can be in conflict with traditional use of the territories.
+
+Our study explores a deeper approach to comparing adaptive capacity features by developing a third-tier of variables that can be coded from literature reviews. These variables can be complemented in future studies or adapted to other social-ecological systems outside the Arctic. We developed these variables because we initially failed at attempting coding examples at the second-tier proposed by Berkes et al [@Berkes:2003wx], or the recently developed principles for building resilience [@Anonymous:2011iw]. These sources, while conceptually appealing, are too general to be able to code presence or absence of features at the level of case studies. These concepts are strongly rooted in the scholarly community of social-ecological systems and a fair amount of conceptual translation was required on our part to share the template and develop categories that were codable with and by other scholars, or validation with stakeholders during the process. We hope our study presents a first attempt at that translation, and that others can replicate and improve our codification to other social-ecological systems. 
+
+Qualitative comparative analysis as a method proved useful to analyze a relatively small sample size against an enormous combinatorial space of possibilities. If the analysis was run at the second-tier variables (N = `r dat %>% pull(x2) %>% unique() %>% length()`), one would have $2^{13}=$ `r 2^13` combinations, and one would need a similar amount of cases. Our solution to simplify from the third-tier proposition (N = `r dat %>% pull(x3) %>% unique() %>% length()`) to the four features of adaptive capacity was to add across each of them. The aggregation by summing has the implicit assumption that all categories are equally weighted. That is, the researcher does not have an _a priori_ bias or inclination to decide which variables could be more important than others for adaptive capacity. As theory develops, one could relax such assumptions by using other (e.g. geometrically weighted) aggregation schemes or motivating a different calibration for the QCA. In the meantime, our analysis presents a first order approximation where no assumption of importance is made, nor bias is induced to particular features of adaptive capacity.
+
+In the search for solutions, different boolean minimization techniques were tested, but only the parsimonious solution reported. We tried intermediate and complex solutions but they did not offer further minimization. Intermediate solutions are tested when the logical reminders (logical combinations for which we do not observe cases, Fig \ref{fig:ttable}A) are assumed to be true. Since we have so many of such combinations that were not observed (9/16), such assumption does not offer further insights on the minimal solution. Complex solutions are computed by explicitly coding theoretically based expectations, for example that being strong on the four features of adaptive capacity would lead to a resilient outcome ($NDKS \rightarrow R$). However, the complex solution did not further minimize the parsimonious solution presented, in particular because many of the cases that are coded as resilient or transformation do actually lack at least one of the adaptive capacity features (Fig \ref{fig:ttable}B). 
+
+Our study is largely based in literature reviews and expert elicitation, and as such it is limited by their focus and scope. For example, several of our cases come from ethnographic work with fishing and hunting communities which typically involve male informants. Thus, our cases might lack other analytic dimensions such as inequality or gender that the literature reviewed was not necessarily targeting. Another example is the role of communication and knowledge networks. Many of the social and ecological challenges these communities face in the Arctic are common across countries. Our analysis does not take into consideration learning and knowledge exchange across different places. Further research might target these limitations by combining other sources of data such as communication through social media groups, national statistics, or remote sensing.
 
 # Conclusion
-(400w)
+
+[400w]
+
 
 
 # Acknowledgements
@@ -171,6 +181,11 @@ Truth table should come early
 \pagebreak
 
 # Supplementary Material {#sec:SM}
+
+
+* SM Fig 1. correlogram?
+* SM tables 1-6: truth tables?
+
 
 \renewcommand\thefigure{S\arabic{figure}}
 \renewcommand\thetable{S\arabic{table}}

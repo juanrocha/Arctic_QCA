@@ -68,35 +68,35 @@ tt_res <- truthTable(
     conditions= c('N', 'D', 'K', 'S'),   
     neg.out= TRUE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
-    PRI=TRUE, incl.cut = 0.95)
+    PRI=TRUE, incl.cut = 0.85)
 
 tt_TRA <- truthTable(
     data = as.data.frame(df1), outcome= "TRA", 
     conditions= c('N', 'D', 'K', 'S'),  
     neg.out= FALSE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
-    PRI=TRUE, incl.cut = 0.95)
+    PRI=TRUE, incl.cut = 0.85)
 
 tt_tra <- truthTable(
     data = as.data.frame(df1), outcome= "TRA", 
     conditions= c('N', 'D', 'K', 'S'),  
     neg.out= TRUE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
-    PRI=TRUE, incl.cut = 0.95)
+    PRI=TRUE, incl.cut = 0.85)
 
 tt_FAI <- truthTable(
-    data = as.data.frame(df1), outcome= "FAI", 
+    data = as.data.frame(df1), outcome= "LoR", 
     conditions= c('N', 'D', 'K', 'S'),   
     neg.out= FALSE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
-    PRI=TRUE, incl.cut = 0.95)
+    PRI=TRUE, incl.cut = 0.85)
 
 tt_fai <- truthTable(
-    data = as.data.frame(df1), outcome= "FAI", 
+    data = as.data.frame(df1), outcome= "LoR", 
     conditions= c('N', 'D', 'K', 'S'),  
     neg.out= TRUE, complete= TRUE, show.cases=TRUE, dcc = TRUE,
     sort.by= c('incl','n'), n.cut=1, decreasing=TRUE,
-    PRI=TRUE, incl.cut = 0.95)
+    PRI=TRUE, incl.cut = 0.85)
 
 tt_RES$minmat %>% apply(., 1, max)
 
@@ -108,48 +108,192 @@ tt_RES$minmat %>%
     ggplot(aes(value, group = combination)) +
     geom_density()
 
+tt_list <- list(tt_RES, tt_res, tt_TRA, tt_tra, tt_FAI, tt_fai)
+save(tt_list, file = "data/truth_tables.RData")
 
 #### Necessary conditions ####
-necessity <- superSubset(
-    data = as.data.frame(df1), 
-    outcome= "RES", 
-    conditions= c('NAV', 'DIV', 'KNO', 'SFO'), 
-    relation = "necessity", 
-    incl.cut = 0.95) #
+necessity <- purrr::map(
+    .x = c("RES", "TRA", "LoR"), 
+    function(x) {
+        superSubset(
+            data = as.data.frame(df1), 
+            outcome= x, 
+            conditions= c('N', 'D', 'K', 'S'), 
+            relation = "necessity", 
+            incl.cut = 0.95)}
+    ) #
+## Necesity for the negation of the output. But the result is not exactly the same as the 
+## pof of the net.out = TRUE. which is in fact what I need.
+non_necessity <- purrr::map(
+    .x = c("RES", "TRA", "LoR"), 
+    function(x) {
+        superSubset(
+            data = as.data.frame(df1), 
+            outcome= paste0("~", x), 
+            conditions= c('N', 'D', 'K', 'S'), 
+            relation = "necessity", 
+            incl.cut = 0.95)}
+) #
 
 # Parameters of fit for necessary conditions
-pof(necessity$coms, df1, outcome = "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), neg.out = FALSE) 
+# The function on the outcome = TRUE (neg.out = FALSE) results on the same table as 
+# `necessity` above. What we need to know is if the scores are lower for the negation.
+# But the way `pof` is written does not accept purrr verbs. So I need to do it manually.
+pof(necessity[[1]]$coms, df1, outcome = "RES", conditions= c('N', 'D', 'K', 'S'), neg.out = FALSE) 
+
 # parameters of fit for necessary conditions in the case of negated outcome
-pof(necessity$coms, df1, outcome= "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), neg.out=TRUE) 
+
+pof_necesity <- list()
+outs <- c("RES", "TRA", "LoR")
+
+
+pof_necesity[[1]] <- pof(necessity[[1]]$coms, df1, outcome= "RES", 
+    conditions = c('N', 'D', 'K', 'S'), neg.out=TRUE) 
+pof_necesity[[2]] <- pof(necessity[[1]]$coms, df1, outcome= "TRA", 
+                         conditions= c('N', 'D', 'K', 'S'), neg.out=TRUE) 
+pof_necesity[[3]] <- pof(necessity[[1]]$coms, df1, outcome= "LoR", 
+                         conditions= c('N', 'D', 'K', 'S'), neg.out=TRUE) 
+## doesn't work
+# pof_necesity <- purrr::map2(
+#     .x = outs,
+#     .y = necessity,
+#     .f = function(x,y){
+#         pof(y$coms, df1, outcome = x, 
+#             conditions= c('N', 'D', 'K', 'S'), neg.out=TRUE)
+#     }
+# )
+
+
+necs_df <- purrr::map(necessity, function(x) x$incl.cov)
+
+
+necs_df <- purrr::pmap(
+    list(
+        necs_df,
+        c("Resilience", "Transformation", "Loss of resilience"),
+        rep("True", 3)),
+    .f = function(x,y,z) {
+        x$variable <- y
+        x$type <- z
+        x <- x %>%
+            rownames_to_column(var = "comb")
+        return(x)
+    }
+) %>% bind_rows()  
+
+necs_df2 <- purrr::map(pof_necesity, function(x) x$incl.cov)
+
+necs_df2 <- purrr::pmap(
+    list(
+        necs_df2,
+        c("Resilience", "Transformation", "Loss of resilience"),
+        rep("False", 3)),
+    .f = function(x,y,z) {
+        x$variable <- y
+        x$type <- z
+        x <- x %>%
+            rownames_to_column(var = "comb")
+        return(x)
+    }
+)   %>% bind_rows() 
+
+necs_df <- bind_rows(necs_df, necs_df2)
+
 
 
 #### Sufficiency conditions ####
 
-sufficiency <- superSubset(
-    data = as.data.frame(df1), 
-    outcome= "RES", 
-    conditions= c('NAV', 'DIV', 'KNO', 'SFO'), 
-    relation = "sufficiency", 
-    incl.cut = 1) 
+sufficiency <- purrr::map(
+    .x = c("RES", "TRA", "LoR"), 
+    function(x) {
+        superSubset(
+            data = as.data.frame(df1), 
+            outcome= x, 
+            conditions= c('N', 'D', 'K', 'S'), 
+            relation = "sufficiency", 
+            incl.cut = 0.95)}
+) #
 
 # sufficiency$coms
 # sufficiency$incl.cov
 
 # Parameters of fit for sufficiency conditions
-pof(sufficiency$coms, df1, outcome= "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), relation = 'suf', neg.out=FALSE) 
-pof(sufficiency$coms, df1, outcome= "RES", conditions= c('NAV', 'DIV', 'KNO', 'SFO'), relation = 'suf', neg.out=TRUE) 
+# pof(sufficiency$coms, df1, outcome= "RES", conditions= c('N', 'D', 'K', 'S'),
+#     relation = 'suf', neg.out=FALSE) 
+# pof(sufficiency$coms, df1, outcome= "RES", conditions= c('N', 'D', 'K', 'S'), 
+#     relation = 'suf', neg.out=TRUE) 
+pof_suff <- list()
+outs <- c("RES", "TRA", "LoR")
 
+pof_suff[[1]] <- pof(sufficiency[[1]]$coms, df1, outcome= "RES", relation = 'suf',
+                         conditions = c('N', 'D', 'K', 'S'), neg.out=TRUE) 
+pof_suff[[2]] <- pof(sufficiency[[1]]$coms, df1, outcome= "TRA", relation = 'suf',
+                         conditions= c('N', 'D', 'K', 'S'), neg.out=TRUE) 
+pof_suff[[3]] <- pof(sufficiency[[1]]$coms, df1, outcome= "LoR", relation = 'suf',
+                         conditions= c('N', 'D', 'K', 'S'), neg.out=TRUE) 
+
+suff_df <- purrr::map(sufficiency, function(x) x$incl.cov)
+
+suff_df <- purrr::pmap(
+    list(
+        suff_df,
+        c("Resilience", "Transformation", "Loss of resilience"),
+        rep("True", 3)),
+    .f = function(x,y,z) {
+        x$variable <- y
+        x$type <- z
+        x <- x %>%
+            rownames_to_column(var = "comb")
+        return(x)
+    }
+)   %>% bind_rows() 
+
+suff_df2 <- purrr::map(pof_suff, function(x) x$incl.cov)
+suff_df2 <- purrr::pmap(
+    list(
+        suff_df2,
+        c("Resilience", "Transformation", "Loss of resilience"),
+        rep("False", 3)),
+    .f = function(x,y,z) {
+        x$variable <- y
+        x$type <- z
+        x <- x %>%
+            rownames_to_column(var = "comb")
+        return(x)
+    }
+)   %>% bind_rows() 
+
+suff_df <- bind_rows(suff_df, suff_df2)
 
 
 
 #### solutions ####
 ## boolean mnimization or parsimonious solution
-parsol <- minimize(
-    tt_FAI, details = TRUE, 
-    show.cases= TRUE)
+parsol <- list(tt_RES, tt_TRA, tt_FAI) %>%
+    purrr::map(function(x){
+        minimize(x, details = TRUE)
+    })
+
+parsol_df <- parsol %>%
+    purrr::map(.f = function(x){x$IC$incl.cov})
+
+
+parsol_df %>%
+    purrr::map2(.x = ., .y = c("Resilience", "Transformation", "Loss of resilience"),
+                .f = function(x,y) {x$type <- y; return(x)}) %>%
+    purrr::map(function(x) rownames_to_column(x, "comb")) %>% 
+    bind_rows() %>%
+    select(-cases) %>% 
+    # rownames_to_column("comb") %>%
+    pivot_longer(inclS:covU, names_to = "statistic", values_to = "value") %>% 
+    ggplot(aes(value, comb)) +
+    geom_point() +
+    facet_grid(type ~ statistic, scales = "free") +
+    theme_light()
+
 
 ## complex solution
-cs <- minimize(tt_FAI, include = "?", details = TRUE)
+cs <- minimize(tt_RES, include = "?", details = TRUE)
     
 
 ## intermediate solution
@@ -158,7 +302,10 @@ is <- minimize(tt_FAI, include = "?", details = TRUE, dir.exp = "0,0,0,0")
     
 # factorize(parsol)
 # parsol$PIchart
-
 parsol
 cs
 is
+
+
+save(suff_df, necs_df, parsol_df, sufficiency, necessity, parsol,
+     file = "data/resultsQCA.RData")
