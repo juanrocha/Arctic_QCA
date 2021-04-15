@@ -275,8 +275,12 @@ parsol <- list(tt_RES, tt_TRA, tt_FAI) %>%
     })
 
 parsol_df <- parsol %>%
-    purrr::map(.f = function(x){x$IC$incl.cov})
+    purrr::map(.f = function(x){x$IC$overall$incl.cov})
 
+## J210413: On the new analysis with 39 cases there is two solutions for resilience. I breaks the code
+## because the strucutre of the resulting list is different. A manual solution below
+
+parsol_df[[1]] <- parsol[[1]]$IC$incl.cov
 
 parsol_df %>%
     purrr::map2(.x = ., .y = c("Resilience", "Transformation", "Loss of resilience"),

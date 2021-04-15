@@ -15,7 +15,10 @@ load('data/coords.Rdata')
 load('data/cleaned_data.RData')
 load('data/cleaned_df.RData')
 load('data/resultsQCA.RData')
+load("data/truth_tables.RData")
 
+
+#### Fig 1: Map ####
 coords <- coords %>%
     mutate(type = case_when(
         output == 1 ~ "Resilience",
@@ -46,18 +49,24 @@ arctic_map <- ggplot(world, aes(x = long, y = lat)) +
         guide = guide_legend(title.position = "top")) + # or nice orange "#FF7F00"
     scale_size("Population", breaks = c(300, 2000, 18000), range = c(0.25,2)) +
     theme_void(base_size = 6) +
-    labs(tag = "A") +
+    # labs(tag = "A") +
     theme(legend.position = c(0.2, 0.1), legend.key.size = unit(0.25, "cm"),
           legend.direction = "vertical", legend.box = "horizontal",
           plot.tag.position = c(0.01,0.95), legend.title = element_text(size = 5),
           legend.text = element_text(size = 5))
+          #panel.background = element_rect(fill = "#c6e2ff"),
+          #legend.box.background = element_rect(fill = "white"))
 
-quartz(width = 3.5, height = 3.5)
+
+##
+#quartz(width = 3.5, height = 3.5)
 arctic_map
 
-ggsave(filename = "arctic_map.png", path = "paper/figures/",
-       plot = arctic_map, width = 3.5, height = 3.5, device = "png",
+ggsave(filename = "fig1_arctic_map.png", path = "paper/figures/",
+       plot = arctic_map, width = 4, height = 4, device = "png",
        dpi = 600)
+
+#### Fig 2: descriptive stats ####
 
 ## time series
 tseries <- coords %>%
@@ -68,7 +77,7 @@ tseries <- coords %>%
   filter(!is.na(year)) %>% 
   mutate(year = as.numeric(year)) 
 
-pe <- tseries %>% 
+pd <- tseries %>% 
   ggplot(aes(year, short_name)) +
     geom_point(color = "midnightblue", size = 0.7) +
     geom_line(aes(group = short_name), color = "midnightblue", size = 0.1) + 
@@ -76,53 +85,59 @@ pe <- tseries %>%
       data = tseries %>% filter(when == "start"),
       aes(year, short_name, label = short_name),
       hjust = 1, size = 1.25, nudge_x = -5, color = "midnightblue") +
-  labs(tag = "E", x = "Year") + xlim(1550, NA) +
+  labs(tag = "D", x = "Year") + xlim(1550, NA) +
     theme_classic(base_size = 6) + 
     theme(axis.text.y = element_blank(), axis.ticks.length.y = unit(0,"mm"), 
           axis.line.y = element_blank(), axis.title.y = element_blank())
   
-pb <- coords %>%
+pa <- coords %>%
   mutate(country = as_factor(country),
          country = fct_relevel(
            .f = country, 
            levels =table(coords$country) %>% sort() %>% names() )) %>% 
   ggplot(aes(country)) + 
-  geom_bar(fill = "orange", alpha = 0.8) +
+  geom_bar(aes(fill = type), alpha = .8) +
   scale_y_continuous(breaks = c(0,5,10)) +
-  labs(y = "Cases", x = "Country", tag = "B") +
+  labs(y = "Cases", x = "Country", tag = "A") +
   coord_flip() +
-  theme_light(base_size = 6)
+  scale_fill_manual(
+    name = "Case type", values = c("#377EB8", "#984EA3", "#FF7F00"),
+    guide = guide_legend(title.position = "top")) +
+  theme_light(base_size = 6) +
+  theme(legend.position = c(0.7, 0.2), legend.key.size = unit(0.25, "cm"))
 
-pc <- coords %>%
+pb <- coords %>%
   mutate(Sector = str_split(Sector, pattern = "; ")) %>%
   select(Sector) %>%
   unnest(cols = c(Sector)) %>%
   mutate(Sector = str_replace(Sector, 
-    "Caribou Management and road infraestructure",
-    "Caribou Management\n and road infraestructure")) %>% 
+    pattern = "Caribou management and road infraestructure",
+    replacement = "Caribou management\n and road infraestructure")) %>% 
   group_by(Sector) %>% tally() %>%
   ggplot(aes(reorder(Sector, n), n)) +
-  geom_col(fill= "orange", alpha = 0.8) +
-  labs(y = "Cases", x = "Sectors", tag = "C") +
+  geom_col(fill= "grey24", alpha = 0.8) +
+  labs(y = "Cases", x = "Sectors", tag = "B") +
   coord_flip() +
   theme_light(base_size = 6)
 
-pd <- coords %>%
+pc <- coords %>%
   select(Climate:`Other socio-economic`) %>%
   pivot_longer(1:last_col(), names_to = "driver", values_to = "value") %>%
   filter(!is.na(value)) %>%
   group_by(driver) %>%
   summarize(n = sum(value)) %>% 
   ggplot(aes(reorder(driver, n), n)) +
-  geom_col(fill= "orange", alpha = 0.8) +
-  labs(y = "Cases", x = "Drivers", tag = "D") +
+  geom_col(fill= "grey24", alpha = 0.8) +
+  labs(y = "Cases", x = "Drivers", tag = "C") +
   coord_flip() +
   theme_light(base_size = 6)
 
-arctic_map | (pb + pc + pd) / pe
+#arctic_map | 
+
+(pa + pb + pc) / pd
 
 ggsave(
-  filename = "fig1_map_stats.png", path = "paper/figures/",
+  filename = "fig2_stats.png", path = "paper/figures/",
   plot = last_plot(), width = 7, height = 3.5, dpi = 300,
   device = "png"
 )
@@ -130,8 +145,7 @@ ggsave(
 
 
 
-
-#### Fig 2: dendrogram instead of table ####
+#### Fig 3: dendrogram instead of table ####
 library(ggraph)
 library(igraph)
 edge_list <- dat %>%
@@ -181,7 +195,7 @@ ggsave(
     device = "png"
 )
 
-#### Fig 3: calibration ####
+#### Fig 4: calibration ####
 cal <- df1 %>% 
   select(case, K, S, N, D) %>%
   pivot_longer(K:D, names_to = "feature", values_to = "score") %>%
@@ -205,7 +219,7 @@ cal <- df1 %>%
 cal
 
 ggsave(filename = "calibration.png", path = "paper/figures/",
-       plot = last_plot(), width = 3, height = 3, dpi = 300,
+       plot = cal, width = 3, height = 3.75, dpi = 300,
        device = "png")
 
 #### heatmaps ####
@@ -230,7 +244,7 @@ sidebar[colnames(mat) %>% str_detect("_L")] <- "#FF7F00"
 
 colnames(mat) <- str_remove(colnames(mat), "_L|_T|_R")
 
-quartz(width = 3, height = 3.5, pointsize = 5) # for heatmap
+quartz(width = 3, height = 3.75, pointsize = 5) # for heatmap
 
 
 heatmap.2(
@@ -266,7 +280,7 @@ legend(
 
 # quartz.save(
 #   file = "paper/figures/heatmap.png", type = "png",
-#   width = 3, height = 3.5, pointsize = 5, dpi = 300)
+#   width = 3, height = 3.75, pointsize = 5, dpi = 300)
 
 
 df_colors  <- coords %>%
@@ -300,7 +314,7 @@ rownames(df_colors) <- colnames(mat)
 # )
 
 
-quartz(width = 7, height = 3.5, pointsize = 5) # combined
+quartz(width = 7, height = 4, pointsize = 5) # combined
 hm <- ggplot(data = data_frame(x = 0, y= 0), aes(x,y)) + geom_blank() +
   labs(tag = "A") +
   theme_void(base_size = 6) + theme(plot.margin = margin(0,0,0,0)) + 
@@ -455,7 +469,7 @@ ggsave(
 parsol_df %>%
   purrr::map2(.x = ., .y = c("Resilience", "Transformation", "Loss of resilience"),
               .f = function(x,y) {x$type <- y; return(x)}) %>%
-  purrr::map(function(x) rownames_to_column(x, "comb")) %>% 
+  purrr::map(.x =., .f = function(x) rownames_to_column(x, "comb")) %>% 
   bind_rows() %>%
   select(-cases) %>% 
   mutate(comb = str_replace_all(comb, pattern = "~D", "d"),
@@ -487,7 +501,86 @@ ggsave(
  #### SM figs ####
 
 ## Correlograms:
-GGally::ggpairs(df1, columns = 2:5)
+sm1 <- df1 %>% 
+  # mutate(outcome = case_when(
+  #   output == 0 ~ "Resilience loss",
+  #   output == 0.5 ~ "Transformation",
+  #   output == 1 ~ "Resilience"
+  # )) %>% 
+  GGally::ggpairs(
+    ., columns = c(2:5),
+    lower = list(continuous = GGally::wrap("points", alpha = 0.75, size = 1)),
+    upper = list(continuous = GGally::wrap(GGally::ggally_cor, display_grid = FALSE, size = 2)),
+    diag = list(continuous = GGally::wrap("densityDiag", alpha = 0.25))
+    ) +
+  theme_light(base_size = 6)
+
+sm1
+ggsave(
+  filename = "sm1_correlogram.png", path = "paper/figures/",
+  plot = last_plot(), width = 4, height = 3, dpi = 300,
+  device = "png"
+)
+
+#### sm2: heatmap 2nd-tier ####
+
+df_2tier <- df_2tier %>% 
+  select(-x1) %>% 
+  pivot_wider(names_from = x2, values_from = score)
+
+case_name <- df_2tier$case
+  
+mat2 <- as.matrix(df_2tier[,-1])
+rownames(mat2) <- case_name
+
+sidebar <- rep(0,nrow(coords))
+sidebar[rownames(mat2) %>% str_detect("_R")] <- "#377EB8"
+sidebar[rownames(mat2) %>% str_detect("_T")] <- "#984EA3"
+sidebar[rownames(mat2) %>% str_detect("_L")] <- "#FF7F00"
+
+rownames(mat2) <- str_remove(rownames(mat2), "_L|_T|_R")
+
+quartz(width = 5.5, height = 4, pointsize = 6) # combined
+
+heatmap.2(
+  x = t(mat2),
+  Rowv=T,
+  Colv=T,
+  trace='none',
+  denscol = "black",
+  density.info = "histogram",
+  #densadj = 1,
+  symkey = TRUE,
+  # main='First tier',
+  xlab='Cases',
+  ylab ='Adaptive capacity features',
+  keysize = 1.25, key = TRUE,
+  key.title = "Score", key.xlab = NA, key.ylab = NA,
+  #key.xtickfun = 0, key.ytickfun = 0,
+  key.par=list(
+    cex.main= 0.8, cex = 1, cex.axis = 0.8,
+    cex.lab = 1, lwd = 0.1, mar=c(2,2,4,1), las = 1,
+    lab = c(2,2,2), ps = 7),
+  margins=c(15, 30), cexRow = 1.25, cexCol =1.15, srtCol = 90,
+  col = colorspace::diverge_hcl(20, palette = "Blue-Red 2", rev = TRUE),
+  ColSideColors = sidebar
+  # ColSideColors = col_color
+)
+
+legend(
+  x = 0.67, y = 1.01, pt.cex = 1.2, xjust = 0, #y.intersp = 0.2,
+  fill=c("#377EB8","#984EA3","#FF7F00"),
+  legend=c("Resilient", 'Transformation', 'Resilience loss'),
+  bty='n', cex= 1.2, border = FALSE)
+
+# quartz.save(
+#   file = "paper/figures/heatmap_2tier.png", type = "png",
+#   width = 5.5, height = 4, pointsize = 6, dpi = 300)
+
+
+
+
+
 
 
 
