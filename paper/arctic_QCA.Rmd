@@ -1,17 +1,18 @@
 ---
 title: "Upscaling the resilience assessment through comparative analysis"
 author: |
-    | \small Juan Rocha^1,2,3^, Carla Lanyon^1^, (Miriam Huitric^1^?), Garry Peterson^1^
+    | \small Juan Rocha^1,2,3,4^, Carla Lanyon^1^, Garry Peterson^1^
     | \small
     | \small ^1^Stockholm Resilience Centre, Stockholm University, Kräftriket 2B, 10691 Stockholm
     | \small ^2^Future Earth, The Swedish Royal Academy of Sciences, Lilla Frescativägen 4A, 104 05 Stockholm
     | \small ^3^South American Institute for Resilience and Sustainability Studies, Maldonado, Uruguay
+    | \small ^4^ juan.rocha@su.se, +46 73 074 7766
 
 
 
 
 abstract: |
-  Resilience is the capacity of any system to maintain its function, structure and identity despite disturbances. Assessing resilience has been elusive due to high levels of abstraction that are difficult to empirically test, or the lack of high quality data required once appropriate proxies are identified. Most resilience assessments are limited to specific situation arenas, making comparision one of the unresolved challenges in resilience assessments. Here we show how leveraging comparative analysis can provide insights on how Arctic communities (N = 40) can best deal with social and environmental change. We found that the capacity to self-organize, and nurturing diversity are sufficient conditions for Arctic communities whose livelihoods have been resilient, or for communities whose livelihoods have been transformed. Our study provides an alternative perspective on how to assess resilience by leveraging comparsion across cases. It also identify governance patways to support adaptations and transformations in the Arctic, a geography with some of the most dramatic social and natural challenges to come. 
+  Resilience is the capacity of any system to maintain its function, structure and identity despite disturbances. Assessing resilience has been elusive due to high levels of abstraction that are difficult to empirically test, or the lack of high quality data required once appropriate proxies are identified. Most resilience assessments are limited to specific situation arenas, making comparision one of the unresolved challenges. Here we show how leveraging comparative analysis can provide insights on how Arctic communities (N = 40) can best deal with social and environmental change. We found that the capacity to self-organize, and nurturing diversity are sufficient conditions for Arctic communities whose livelihoods have been resilient, or for communities whose livelihoods have been transformed. Our study provides an alternative perspective on how to assess resilience by leveraging comparsion across cases. It also identify governance patways to support adaptations and transformations in the Arctic, a geography with some of the most dramatic social and natural challenges to come. 
 
 bibliography: arctic_QCA.bib
 csl: nature.csl
@@ -21,6 +22,7 @@ output:
     keep_tex: no
     toc: no
     latex_engine: xelatex
+    number_sections: true
 citecolor: blue
 documentclass: article
 font: Arial
@@ -35,6 +37,7 @@ header-includes:
 - \renewcommand{\abstractname}{}
 - \graphicspath{{figures/}}
 - \usepackage[margin=2.5cm]{geometry}
+
 ---
 
 ```{r data, include=FALSE}
@@ -49,6 +52,17 @@ load(here("data", "truth_tables.RData"))
 
 ```
 
+**Acknowledgments**
+ 
+This paper has benefit from the expertise and input of several case study contributors including: Hanna Ahlström, Rawaf Al Rawaf, Derek Armitage, Dag Avango, Svetlana Avelova, Heather Bell, Adrian Braun, Clara Burgard, Christopher Cosgrove, Daniele Crimella, Enoil de Sousa Júnior, Anna Degteva, Lara Dominguez, Níels Einarsson, Viktoriia Filippova, Melanie Flynn, Jonas Gren, Hannah Griffiths, Gustav Grusell, Larry Hamilton, Elin Högström, Elinor Holén, Henry P. Huntington, Hanna Linnéa Kylin, Matilda Lenell, Katrin Lindbäck, Linda Lindström, Cornelia Ludwig, Tobias Luthe, Katja Malmborg, Svein D. Mathiesen, Viveca Mellegård, Yasir Muhammad, Tero Mustonen, George Noongwook, Julia Olsen, Roweena Patel, Aliaksei Patonia, Shealagh Pope, Kaitlyn Rathwell, Fernando Remolina, Stine Rybråten, Carmen Seco Pérez, Nikolas Sellheim, Philipp Siegel, Jessica Spijkers, Dries Stevens, Andrea Utas, Lize-Marié van der Watt, Liliia Vinokurova, Kate Williman, Alexander Winkler, Alla Yurova. Our case study selection and template development benefited of valuable feedback from Miriam Huitric, Carolina Behe, Marcus Carson, Stuart Chapin III, Douglas Clark, Joel Clement, Sarah Cornell, Bruce Forbes, Grete Hovelsrud, Gary Kofinas, Svein Mathiesen, Chanda Meek, Tero Mustonen, Annika Nilsson, Allyson Quinlan, Johan Rockström, Martin Sommerkorn, and Claudia Strambo. This work was supported by the Arctic Council, and the Belmont Forum (Formas) grant 2019-02316.
+
+\pagebreak
+
+
+\begin{abstract}
+Resilience is the capacity of any system to maintain its function, structure and identity despite disturbances. Assessing resilience has been elusive due to high levels of abstraction that are difficult to empirically test, or the lack of high quality data required once appropriate proxies are identified. Most resilience assessments are limited to specific situation arenas, making comparision one of the unresolved challenges. Here we show how leveraging comparative analysis can provide insights on how Arctic communities (N = 40) can best deal with social and environmental change. We found that the capacity to self-organize, and nurturing diversity are sufficient conditions for Arctic communities whose livelihoods have been resilient, or for communities whose livelihoods have been transformed. Our study provides an alternative perspective on how to assess resilience by leveraging comparsion across cases. It also identify governance patways to support adaptations and transformations in the Arctic, a geography with some of the most dramatic social and natural challenges to come.
+\end{abstract}
+
 # Introduction
 
 Resilience is the capacity of any system to absorb disturbance and reorganize while undergoing change so as to still retain essentially the same function, structure, feedbacks, and therefore identity [@Anonymous:2016fv]. There are over 70 definitions of resilience [@Fisher:2015fj], making it a hard concept to grasp, to operationalize, and empirically ground. How does one measure resilience remains a non-trivial challenge and a key frontier of active research [@Liu:2020ku; @Gao:2016dn; @Scheffer:2009p4449].
@@ -59,7 +73,7 @@ While resilience is often introduced in the context of ecological problems, its 
 
 If these concepts are so widely used, why is it so hard to find good empirical proxies of resilience? One problem with the general applicability of these concepts is that applying it to different systems requires answering _a priori_ the questions of resilience of what to what? [@Carpenter:2014fw]. Doing so reduces the ability of comparing across systems. For example, one might successfully approximate the resilience of a cancer, but it does not mean one can use the same method or proxies to assess the resilience of climate, or not even a different type of cancer. Consequently, most resilience assessments have been centered around particular problems by particular actors (e.g. water management), and remain participatory consultations limited by the perceptions of participants. They are important exercises to generate shared knowledge of a management problem enabling communities to identify feedbacks, slow variables or potential leverage points for intervention [@ResilienceAlliance:2011vc; @Walker:2012wp; @Walker:2012ur]. However, more generic, cross-system approaches are needed [@Scheffer:2012cta; @Scheffer:2003p339; @Scheffer:2009p4449].
 
-Time being a common dimension to any dynamical system lends itself for the development of generic proxies of resilience [@Scheffer:2009p4449], in particular recovery time [@Holling:1973p6861]. Complex systems when close to critical transitions leave statistical signatures on the time series of its state variables known as critical slowing down [@Strogatz:2014wo; @Scheffer:2012cta; @Scheffer:2009p4449]. It means that the system takes longer to recover after a small disturbance, which translates into increases in variance, autocorrelation, and skewness or flickering [@Scheffer:2009p4449; @Dakos:2015jt]. These methods however have some limitations. They can fail when dynamics are driven by stochastic processes [@Hastings:2018gy; @Hastings:2010p5336], and often require long time series to detect useful signals [@Dakos:2015jt]. Time-based metrics offer no insight into two important dimensions of resilience: adaptive and transformative capacities [@Anonymous:2016fv].
+Time being a common dimension to any dynamical system lends itself for the development of generic proxies of resilience [@Scheffer:2009p4449], in particular recovery time [@Holling:1973p6861]. Complex systems when close to regime shifts leave statistical signatures on time series that reveals resilience loss [@Strogatz:2014wo; @Scheffer:2012cta; @Scheffer:2009p4449], in a nutshell it takes longer to recover after a small disturbances [@Scheffer:2009p4449; @Dakos:2015jt]. These methods can fail when dynamics are driven by stochastic processes [@Hastings:2018gy; @Hastings:2010p5336], and often require long time series to detect meaningful signals [@Dakos:2015jt]. Time-based metrics offer no insight into two important evolutionary dimensions of resilience: adaptive and transformative capacities [@Anonymous:2016fv].
 
 Here we propose a qualitative comparative method for upscaling resilience assessments. We study `r nrow(coords)` communities in the Arctic facing environmental and social challenges related to potential regime shifts in Arctic ecosystems, or socio-economic and political pressures opened by recent pathways of development (Fig \ref{fig:stats}). We outline how leveraging the power of comparison enables extracting patterns that transcend individual case studies informing theory development, as well as potential management or governance arrangements. We hope our qualitative proposal complements current quantitative metrics that focus on recovery time by gaining insights about the ability to adapt and transform that define communities in the Arctic. But why the Arctic?
 
@@ -99,7 +113,7 @@ The Arctic Resilience Assessment was commissioned by the Arctic council under th
 
 **Co-designing a case study template**: We initially designed a template to capture social-ecological dynamics from literature reviews and expert elicitation inspired by the Regime Shifts database [@Biggs:2018hx]. Our first template was however modified to incorporate the feedback, needs and priorities of the different actors involved. We modified and tested the gathering data tool through workshops and focus groups that took place in Washington, Tromsø, Bodø, and Stockholm (2015-16). The group also guided our selection of case studies to prioritize their most acute needs, and secure an heterogeneous selection of studies across problem issues and geographies.
 
-The template was designed to capture key aspects of resilience and adaptive capacity based on literature reviews. The coder assigns whether the social-ecological system is resilient if the main livelihoods of the communities described are maintained over time, despite social and ecological disturbances. A case is coded as transformation if a community shifts their main source of livelihoods to a different set, but manages to continue developing within the same place. A case is coded as loss of resilience where the main livelihoods are lost, no new livelihoods are established, and symptoms of community collapse long last such as emigration, simplified local economies, high unemployment or high substance abuse (Fig \ref{fig:map}). When possible, the templates were validated by experts in the topics who suggested new literature sources or improve our interpretation of the initial review . All templates collected are available in (XYZ) data repository. Table 1 presents a summary of the case studies.
+The template was designed to capture key aspects of resilience and adaptive capacity based on literature reviews. The coder assigns whether the social-ecological system is resilient if the main livelihoods of the communities described are maintained over time, despite social and ecological disturbances. A case is coded as transformation if a community shifts their main source of livelihoods to a different set, but manages to continue developing within the same place. A case is coded as loss of resilience where the main livelihoods are lost, no new livelihoods are established, and symptoms of community collapse long last such as emigration, simplified local economies, high unemployment or high substance abuse (Fig \ref{fig:map}). When possible, the templates were validated by experts in the topics who suggested new literature sources or improve our interpretation of the initial review . All templates collected are available in ([10.6084/m9.figshare.14779533](doi.org/10.6084/m9.figshare.14779533)) data repository. Table 1 presents a summary of the case studies.
 
 
 ```{r echo = FALSE, results = "asis"}
@@ -114,14 +128,14 @@ coords %>%
 
 **Qualitative comparative analysis**: Based on the templates, we coded a matrix of presence / absence of the third-tier variables used as proxies of adaptive capacity (Fig \ref{fig:vars}). A category is coded as -1 if the evidence in the literature or expert elicitation suggest that the case lacks that dimension, 1 if the evidence suggest presence of the category, or 0 if there is no evidence available. We aggregated the scores at the first-tier level by summing across the third-level categories. Qualitative comparative analysis was then used to investigate necessary and sufficient conditions for a case to be resilient, transformation, or loss of resilience.
 
-Qualitative comparative analysis (QCA) is a method that leverage boolean algebra [@Boole:1854ww] and (fuzzy) set theory to investigate research questions with intermediate number of cases [@Ragin:2009te] (Fig \ref{fig:scheme}). While its origins are rooted in political science and sociology [@Rihoux:2013jx], the method has found application in several social-ecological systems problems [@Crona:2015ii; @Anonymous:2013iw; @Basurto:2013ev]. In our analysis, the four dimensions for adaptive capacity [@Berkes:2003wx] were used as conditions, and the outputs were coded as resilience loss, transformation or resilience based on the templates. First, we calibrated thresholds for inclusion or exclusion using a logistic function where values lower than -2 were excluded, +2 included, and -0.5 was assumed to be maximum ambiguity. For example, if a case has a score >2 for variables under the category "_nurturing diversity for reorganization and renewal_", the case is set to belong to the set **D**, which is a shorthand for diversity; if the score was <2, it does not belong to the set, which in QCA is denoted as **d**. Throughout the paper, capital letters are used to denote belonging to a set or presence of a feature, while small caps used for its absence or negation.
+Qualitative comparative analysis (QCA) is a method that leverage boolean algebra [@Boole:1854ww] and (fuzzy) set theory to investigate research questions with intermediate number of cases [@Ragin:2009te]. While its origins are rooted in political science and sociology [@Rihoux:2013jx], the method has found application in several social-ecological systems problems [@Crona:2015ii; @Anonymous:2013iw; @Basurto:2013ev]. In our analysis, the four dimensions for adaptive capacity [@Berkes:2003wx] were used as conditions, and the outputs were coded as resilience loss, transformation or resilience based on the templates. First, we calibrated thresholds for inclusion or exclusion using a logistic function where values lower than -2 were excluded, +2 included, and -0.5 was assumed to be maximum ambiguity. For example, if a case has a score >2 for variables under the category "_nurturing diversity for reorganization and renewal_", the case is set to belong to the set **D**, which is a shorthand for diversity; if the score was <2, it does not belong to the set, which in QCA is denoted as **d**. Throughout the paper, capital letters are used to denote belonging to a set or presence of a feature, while small caps used for its absence or negation.
 
-\begin{figure*}[ht]
-\centering
-\includegraphics[width = 3in, height = 3.5in]{fig_scheme}
-\caption{\textbf{Method scheme} Based on literature review and expert elicitation `r nrow(coords)` cases were coded for key theoretical features of adaptive capacity. Using qualitative comparative analysis we explored necessary and sufficient conditions for resilience and transformations. Each case is represented by a dot in the Venn diagram. The calibration determines the degree of belonging to each set, or how strong is the presence / absence of adaptive capacity features. Boolean minimization allow us to discover which features are more relevant for each outcome: resilience, transformation or resilience loss.}
-\label{fig:scheme}
-\end{figure*}
+<!-- \begin{figure*}[ht] -->
+<!-- \centering -->
+<!-- \includegraphics[width = 3in, height = 3.5in]{fig_scheme} -->
+<!-- \caption{\textbf{Method scheme} Based on literature review and expert elicitation `r nrow(coords)` cases were coded for key theoretical features of adaptive capacity. Using qualitative comparative analysis we explored necessary and sufficient conditions for resilience and transformations. Each case is represented by a dot in the Venn diagram. The calibration determines the degree of belonging to each set, or how strong is the presence / absence of adaptive capacity features. Boolean minimization allow us to discover which features are more relevant for each outcome: resilience, transformation or resilience loss.} -->
+<!-- \label{fig:scheme} -->
+<!-- \end{figure*} -->
 
 Next, we computed subsets of necessary and sufficient conditions for each possible output and its negation. We used the truth table of our case studies --a cross tabulation of the number of cases in our sample against all possible combinations of conditions and outputs-- to perform boolean minimization and identify parsimonious, complex, and intermediate solutions. These solutions (or causal recipes in the literature) suggest a combination of conditions that leads to an output (being resilient) to be true or false. In other words, it helps us identify which features increase adaptive capacity, and hence resilience, in the Arctic communities in our study. All the analysis was performed in `R` [@RCoreTeam:2012wf] using the `QCA` package [@Thiem:2012dq; @Dusa:2019gp]. All the code used in our analysis is available at: [https://github.com/juanrocha/Arctic_QCA](https://github.com/juanrocha/Arctic_QCA)
 
@@ -201,7 +215,7 @@ Our study is largely based in literature reviews and expert elicitation, and as 
 
 Resilience is a fundamental feature of complex social-ecological systems. Yet, approaches for measuring resilience, adaptive or transformative capacities remain confined to single case studies, limiting theory testing, hypothesis development, or simply comparison. Here we developed a qualitative approach for measuring resilience inspired by the adaptive capacity framework. Through a co-production process, we expanded the framework with a third tier variable, and used comparative analysis to distill features that increase resilience in Arctic communities. Communities with high capacities to self-organized, to combine multiple sources of knowledge, or who nurture diversity are more likely to maintain their livelihoods or transform towards new social-ecological configurations.  We hope our methodological approach complement existing quantitative methods such as early warning signals to approximate resilience, and encourage the community to test and improve our coding approximation in other social-ecological systems.
 
-## Box 1. Case examples
+# Box 1. Case examples
 
 ### Resilience: Pangnirtung- Nunavut Territory-Canada: Individual and collective adaptive strategies to face climate change
 
@@ -217,9 +231,6 @@ Aklavik is a settlement from Northwest Territory, inhabited mainly by Inuvialuit
 
 
 
-# Acknowledgements
-
-This paper has benefit from the expertise and input of several case study contributors including: Hanna Ahlström, Rawaf Al Rawaf, Derek Armitage, Dag Avango, Svetlana Avelova, Heather Bell, Adrian Braun, Clara Burgard, Christopher Cosgrove, Daniele Crimella, Enoil de Sousa Júnior, Anna Degteva, Lara Dominguez, Níels Einarsson, Viktoriia Filippova, Melanie Flynn, Jonas Gren, Hannah Griffiths, Gustav Grusell, Larry Hamilton, Elin Högström, Elinor Holén, Henry P. Huntington, Hanna Linnéa Kylin, Matilda Lenell, Katrin Lindbäck, Linda Lindström, Cornelia Ludwig, Tobias Luthe, Katja Malmborg, Svein D. Mathiesen, Viveca Mellegård, Yasir Muhammad, Tero Mustonen, George Noongwook, Julia Olsen, Roweena Patel, Aliaksei Patonia, Shealagh Pope, Kaitlyn Rathwell, Fernando Remolina, Stine Rybråten, Carmen Seco Pérez, Nikolas Sellheim, Philipp Siegel, Jessica Spijkers, Dries Stevens, Andrea Utas, Lize-Marié van der Watt, Liliia Vinokurova, Kate Williman, Alexander Winkler, Alla Yurova. Our case study selection and template development benefited of valuable feedback from Carolina Behe, Marcus Carson, Stuart Chapin III, Douglas Clark, Joel Clement, Sarah Cornell, Bruce Forbes, Grete Hovelsrud, Gary Kofinas, Svein Mathiesen, Chanda Meek, Tero Mustonen, Annika Nilsson, Allyson Quinlan, Johan Rockström, Martin Sommerkorn, and Clauda Strambo. This work was supported by the Arctic Council, and the Belmont Forum (Formas) grant 2019-02316.
 
 
 # References
@@ -234,8 +245,8 @@ This paper has benefit from the expertise and input of several case study contri
 
 
 
-\renewcommand\thefigure{S\arabic{figure}}
-\renewcommand\thetable{S\arabic{table}}
+\renewcommand\thefigure{A\arabic{figure}}
+\renewcommand\thetable{A\arabic{table}}
 \setcounter{table}{0}
 \setcounter{figure}{0}
 

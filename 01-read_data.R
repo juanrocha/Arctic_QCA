@@ -4,11 +4,11 @@ library(QCA)
 
 ## read data:
 ## 30 cases version
-dat <- read_csv2(file = "data/QCA-AnalysisData-carla.csv") %>%
+dat <- read_csv(file = "data/QCA-coded_Data.csv") %>%
     janitor::clean_names()
 
 
-## current version in drive with 34 cases
+## current version in drive with 40 cases
 dat <- googlesheets4::read_sheet(
     "https://docs.google.com/spreadsheets/d/1qX_Eg1wdExa0SyV2sqR-8DfHoD_6KfEbrGqxkkmO-ZA/edit#gid=1714451352") %>%
     rename(x1 = 1, x2 = 2, x3 = 3)
