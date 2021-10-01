@@ -1,0 +1,45 @@
+---
+title: "Upscaling the resilience assessment through comparative analysis"
+author: |
+    | \small Juan Rocha^1,2,3,4^, Carla Lanyon^1^, Garry Peterson^1^
+    | \small
+    | \small ^1^Stockholm Resilience Centre, Stockholm University, Kräftriket 2B, 10691 Stockholm
+    | \small ^2^Future Earth, The Swedish Royal Academy of Sciences, Lilla Frescativägen 4A, 104 05 Stockholm
+    | \small ^3^South American Institute for Resilience and Sustainability Studies, Maldonado, Uruguay
+    | \small ^4^ juan.rocha@su.se, +46 73 074 7766
+
+
+
+
+abstract: |
+  Resilience is the capacity of any system to maintain its function, structure and identity despite disturbances. Assessing resilience has been elusive due to high levels of abstraction that are difficult to empirically test, or the lack of high quality data required once appropriate proxies are identified. Most resilience assessments are limited to specific situation arenas, making comparision one of the unresolved challenges. Here we show how leveraging comparative analysis can provide insights on how Arctic communities (N = 40) can best deal with social and environmental change. We found that the capacity to self-organize, and nurturing diversity are sufficient conditions for Arctic communities whose livelihoods have been resilient, or for communities whose livelihoods have been transformed. Our study provides an alternative perspective on how to assess resilience by leveraging comparsion across cases. It also identify governance patways to support adaptations and transformations in the Arctic, a geography with some of the most dramatic social and natural challenges to come. 
+
+bibliography: arctic_QCA.bib
+csl: nature.csl
+output:
+  pdf_document:
+    dev: pdf
+    keep_tex: no
+    toc: no
+    latex_engine: xelatex
+    number_sections: true
+citecolor: blue
+documentclass: article
+font: Arial
+fontsize: 10pt
+
+linkcolor: blue
+urlcolor: blue
+header-includes:
+- \usepackage{dcolumn, rotating, longtable, lineno, float, fontspec, array, tabularx}
+- \setmainfont{Arial}
+- \linenumbers
+- \renewcommand{\abstractname}{}
+- \graphicspath{{figures/}}
+- \usepackage[margin=2.5cm]{geometry}
+
+---
+
+**Acknowledgments**
+ 
+This paper has benefit from the expertise and input of several case study contributors including: Hanna Ahlström, Rawaf Al Rawaf, Derek Armitage, Dag Avango, Svetlana Avelova, Heather Bell, Adrian Braun, Clara Burgard, Christopher Cosgrove, Daniele Crimella, Enoil de Sousa Júnior, Anna Degteva, Lara Dominguez, Níels Einarsson, Viktoriia Filippova, Melanie Flynn, Jonas Gren, Hannah Griffiths, Gustav Grusell, Larry Hamilton, Elin Högström, Elinor Holén, Henry P. Huntington, Hanna Linnéa Kylin, Matilda Lenell, Katrin Lindbäck, Linda Lindström, Cornelia Ludwig, Tobias Luthe, Katja Malmborg, Svein D. Mathiesen, Viveca Mellegård, Yasir Muhammad, Tero Mustonen, George Noongwook, Julia Olsen, Roweena Patel, Aliaksei Patonia, Shealagh Pope, Kaitlyn Rathwell, Fernando Remolina, Stine Rybråten, Carmen Seco Pérez, Nikolas Sellheim, Philipp Siegel, Jessica Spijkers, Dries Stevens, Andrea Utas, Lize-Marié van der Watt, Liliia Vinokurova, Kate Williman, Alexander Winkler, Alla Yurova. Our case study selection and template development benefited of valuable feedback from Miriam Huitric, Carolina Behe, Marcus Carson, Stuart Chapin III, Douglas Clark, Joel Clement, Sarah Cornell, Bruce Forbes, Grete Hovelsrud, Gary Kofinas, Svein Mathiesen, Chanda Meek, Tero Mustonen, Annika Nilsson, Allyson Quinlan, Johan Rockström, Martin Sommerkorn, and Claudia Strambo. This work was supported by the Arctic Council, and the Belmont Forum (Formas) grant 2019-02316.
