@@ -5,7 +5,7 @@ abstract: |
   Resilience is the capacity of any system to maintain its function, structure and identity despite disturbances. Assessing resilience has been elusive due to high levels of abstraction that are difficult to empirically test, or the lack of high quality data required once appropriate proxies are identified. Most resilience assessments are limited to specific situation arenas, making comparision one of the unresolved challenges. Here we show how leveraging comparative analysis can provide insights on how Arctic communities (N = 40) can best deal with social and environmental change. We found that the capacity to self-organize, and nurturing diversity are sufficient conditions for Arctic communities whose livelihoods have been resilient, or for communities whose livelihoods have been transformed. Our study provides an alternative perspective on how to assess resilience by leveraging comparsion across cases. It also identify governance patways to support adaptations and transformations in the Arctic, a geography with some of the most dramatic social and natural challenges to come. 
 
 bibliography: arctic_QCA.bib
-csl: nature.csl
+csl: /Users/juanrocha/Documents/styles/elsevier-harvard.csl
 output:
   pdf_document:
     dev: pdf
@@ -142,14 +142,6 @@ quantitative metrics that focus on recovery time by gaining insights about the
 ability to adapt and transform that define communities in the Arctic. But why
 the Arctic?
 
-```{=tex}
-\begin{figure*}[ht]
-\centering
-\includegraphics[width = 4in, height = 4in]{fig1_arctic_map}
-\caption{\textbf{Arctic case studies} $`r nrow(coords)`$ cases were analyzed across Arctic nations.}
-\label{fig:map}
-\end{figure*}
-```
 The Arctic is a region of the world where the resilience of communities is being
 tested by rapid climate, social and ecological change; but also a region with a
 wealth of case studies that enable a comparative approach. Climate change is
@@ -181,14 +173,7 @@ qualitative comparative analysis to infer necessary and sufficient conditions
 for resilience, transformations or resilience loss in $`r nrow(coords)`$
 communities across the Arctic. Below we describe in detail each of these steps.
 
-```{=tex}
-\begin{figure*}[ht]
-\centering
-\includegraphics[width = 7in, height = 3.5in]{fig2_stats}
-\caption{\textbf{Descriptive statistics} $`r nrow(coords)`$ cases were analyzed across Arctic nations (A) covering a range of sectors (B) and responding to different types of drivers (C). The time spam of our case studies depend on what is reported on literature reviews. While most concentrate on contemporary issues, some cases date back centuries (D). The category "other" in (A) refers to the case of the Bering Strait which lies in international waters between Russia and USA.}
-\label{fig:stats}
-\end{figure*}
-```
+
 **Measuring adaptive capacity**: We draw inspiration from early conceptual
 developments on how to approximate adaptive capacity. Adaptability is related to
 the capacity to learn, combine experience and knowledge, innovate, and adjust
@@ -205,17 +190,9 @@ combining recent developments on principles for building resilience
 third-tier of variables benefited from input and testing of preliminary case
 studies in the context of the Arctic Resilience Assessment [@Carson:2016ts].
 
-```{=tex}
-\begin{figure*}[ht]
-\centering
-\includegraphics[width = 7in, height = 4in]{vars_dendrogram}
-\caption{\textbf{Adaptive capacity} We operationalized the original proposition by Berkes et al to include a third tier of variables that enable the identification of adaptive capacity features from literature reviews and expert elicitation. The variables were co-designed and tested with a broad range of stakeholders.}
-\label{fig:vars}
-\end{figure*}
-```
+
 The Arctic Resilience Assessment was commissioned by the Arctic council under
-the Swedish Ministry of Environment chairmanship. The assessment was led by the
-Stockholm Resilience Centre and the Stockholm Environmental Institute
+the Swedish Ministry of Environment chairmanship
 [@Carson:2016ts]. It builds on collaborations between the Arctic countries,
 Indigenous peoples in the region, and several observers that include NGOs and
 academic institutions. The research questions, methods development, and
@@ -281,14 +258,6 @@ interpretation of the case. All templates collected are available in
 ([10.6084/m9.figshare.14779533](doi.org/10.6084/m9.figshare.14779533)) data
 repository. Table 1 presents a summary of the case studies.
 
-```{r echo = FALSE, results = "asis"}
-library(knitr)
-coords %>%
-  arrange(desc(output)) %>%
-  select(1:3) %>%
-  kable(., caption = "**Case studies**. Their outcome are coded as resilient [R], transformation [T], or loss of resilience [L].", label = "tab1")
-
-```
 
 **Qualitative comparative analysis**: Based on our case study templates, we
 created a matrix of cases versus the third-tier adaptive capacity proxy
@@ -322,18 +291,6 @@ denoted as **d**. Throughout the paper, capital letters are used to denote
 belonging to a set or presence of a feature, while small caps used for its
 absence or negation.
 
-<!-- \begin{figure*}[ht] -->
-
-<!-- \centering -->
-
-<!-- \includegraphics[width = 3in, height = 3.5in]{fig_scheme} -->
-
-<!-- \caption{\textbf{Method scheme} Based on literature review and expert elicitation `r nrow(coords)` cases were coded for key theoretical features of adaptive capacity. Using qualitative comparative analysis we explored necessary and sufficient conditions for resilience and transformations. Each case is represented by a dot in the Venn diagram. The calibration determines the degree of belonging to each set, or how strong is the presence / absence of adaptive capacity features. Boolean minimization allows us to discover which features are more relevant for each outcome: resilience, transformation or loss of resilience.} -->
-
-<!-- \label{fig:scheme} -->
-
-<!-- \end{figure*} -->
-
 Next, we computed subsets of necessary and sufficient conditions for each
 possible output (i.e. loss of resilience **L**, resilience **R**, and
 transformation **T**) and its negation (i.e. **l**, **r**, and **t**
@@ -351,14 +308,6 @@ Arctic communities in our study. The analysis was performed in `R`
 
 # Results
 
-```{=tex}
-\begin{figure*}[ht]
-\centering
-\includegraphics[width = 7in, height = 3.5in]{fig3_calibration_heatmap}
-\caption{\textbf{Calibrating adaptive capacity} Scores were calculated by adding all variables grouped by first-tier categories: i) learning to live with change and uncertainty (N), ii) nurturing diversity for reorganization and renewal (D), iii) combining different types of knowledge for learning (K), and iv) creating opportunities for self organization (S). Cases and adaptive capacity features are clustered around their scores, showing groups of resilient and transformation cases in the top, and resilience loss in the bottom (A). A logistic function was used to calibrate the raw data (B) for input into the qualitative comparative analysis. Fig \ref{fig:sm2} provides the raw values for the second-tier adaptive capacity features.}
-\label{fig:cal}
-\end{figure*}
-```
 ```{r echo = FALSE}
 stats <- coords %>%
   select(Climate:`Other socio-economic`) %>%
@@ -406,14 +355,6 @@ is done with fuzzy sets because it utilizes the diversity of features to cover
 many of the possible combinations of cases. A crisp set analysis does not
 converge given poor coverage in the truth table.
 
-```{=tex}
-\begin{figure*}[ht]
-\centering
-\includegraphics[width = 6in, height = 3in]{fig4_truth_tables}
-\caption{\textbf{Truth tables} The truth tables show the distribution of cases across logical combinations. With 4 adaptive capacity features, there are 16 plausible combinations of these features. Our cases only cover 7 of them (A). The sufficiency inclusion score (incl) indicates how much a logical combination is sufficient for an outcome (e.g. OUT Resilience = True), while the proportion of reduction in inconsistency (PRI) reveals potential contradictions with respect to all other combinations.}
-\label{fig:ttable}
-\end{figure*}
-```
 The truth table reveals that our $`r nrow(coords)`$ Arctic cases capture
 `r tt_list[[1]]$tt %>% filter(OUT != "?") %>% nrow()` out of the $`r 2^4`$
 possible combinations of adaptive capacity features (Fig. \ref{fig:ttable}). In
@@ -434,14 +375,6 @@ sufficiency inclusion score (incl) and the proportional reduction of
 inconsistency (PRI) suggest that such cases are more likely to belong to the
 loss of resilience set.
 
-```{=tex}
-\begin{figure*}[ht]
-\centering
-\includegraphics[width = 6in, height = 3in]{fig5_necessary_and_sufficient}
-\caption{\textbf{Necessary and sufficient conditions} The analysis of (A) sufficiency and (B) necessity compares the relevance of observed combinations of features for an output. For sufficiency these combinations of features are multiplicative (set intersection, logical AND); while for necessity, these combinations of features are additive (set union, logical OR). The coverage (cov) and inclusion (incl) statistics help comparing the contribution of features to the outcome, while the proportional reduction of inconsistency (PRI) and relevance of necessity (RoN) weigh the relative contribution of each solution with respect to the other solutions.}
-\label{fig:necsuf}
-\end{figure*}
-```
 The analysis of necessity and sufficiency reveals that set of adaptive capacity
 features for resilient and transformation cases are very similar. Both have the
 same sufficient conditions with relatively similar scores for inclusion and
@@ -470,14 +403,7 @@ capacity to navigate uncertainty (N). Cases with loss of resilience commonly
 lack 3 out of the 4 features ($n*k*s$), even in the presence of different types
 of knowledge (N) and the capacity to self-organize (S).
 
-```{=tex}
-\begin{figure*}[ht]
-\centering
-\includegraphics[width = 6in, height = 3in]{fig6_solutions}
-\caption{\textbf{Parsimonious solutions} Minimal set of conditions (rows) that can lead to different types of outcomes (resilience, transformation, or loss of resilience). Each term is a set of sufficient conditions that combined lead to a full minimal parsimonious solution. For example, the outcome resilience can be reached when a case  $n*k*s + N*K + D*s + d*K*S \rightarrow R$. Multiplicative terms (*) means logical AND, and additive terms means logical OR. Inclusion and coverage for sufficiency (inclS, covS), the unique coverage (covU), and the proportional reduction in inconsistency (PRI) allow comparing the different contributions of each term to the solutions.}
-\label{fig:sols}
-\end{figure*}
-```
+
 # Discussion
 
 On summary, our analysis shows that all features of adaptive capacity are
@@ -663,6 +589,83 @@ adapt.
 :::
 
 \pagebreak
+
+```{r echo = FALSE, results = "asis"}
+library(knitr)
+coords %>%
+  arrange(desc(output)) %>%
+  select(1:3) %>%
+  kable(., caption = "**Case studies**. Their outcome are coded as resilient [R], transformation [T], or loss of resilience [L].", label = "tab1")
+
+```
+
+```{=tex}
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 4in, height = 4in]{fig1_arctic_map}
+\caption{\textbf{Arctic case studies} $`r nrow(coords)`$ cases were analyzed across Arctic nations.}
+\label{fig:map}
+\end{figure*}
+```
+
+```{=tex}
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 7in, height = 3.5in]{fig2_stats}
+\caption{\textbf{Descriptive statistics} $`r nrow(coords)`$ cases were analyzed across Arctic nations (A) covering a range of sectors (B) and responding to different types of drivers (C). The time spam of our case studies depend on what is reported on literature reviews. While most concentrate on contemporary issues, some cases date back centuries (D). The category "other" in (A) refers to the case of the Bering Strait which lies in international waters between Russia and USA.}
+\label{fig:stats}
+\end{figure*}
+```
+
+```{=tex}
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 7in, height = 4in]{vars_dendrogram}
+\caption{\textbf{Adaptive capacity} We operationalized the original proposition by Berkes et al to include a third tier of variables that enable the identification of adaptive capacity features from literature reviews and expert elicitation. The variables were co-designed and tested with a broad range of stakeholders.}
+\label{fig:vars}
+\end{figure*}
+```
+
+
+```{=tex}
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 7in, height = 3.5in]{fig3_calibration_heatmap}
+\caption{\textbf{Calibrating adaptive capacity} Scores were calculated by adding all variables grouped by first-tier categories: i) learning to live with change and uncertainty (N), ii) nurturing diversity for reorganization and renewal (D), iii) combining different types of knowledge for learning (K), and iv) creating opportunities for self organization (S). Cases and adaptive capacity features are clustered around their scores, showing groups of resilient and transformation cases in the top, and resilience loss in the bottom (A). A logistic function was used to calibrate the raw data (B) for input into the qualitative comparative analysis. Fig \ref{fig:sm2} provides the raw values for the second-tier adaptive capacity features.}
+\label{fig:cal}
+\end{figure*}
+```
+
+```{=tex}
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 6in, height = 3in]{fig4_truth_tables}
+\caption{\textbf{Truth tables} The truth tables show the distribution of cases across logical combinations. With 4 adaptive capacity features, there are 16 plausible combinations of these features. Our cases only cover 7 of them (A). The sufficiency inclusion score (incl) indicates how much a logical combination is sufficient for an outcome (e.g. OUT Resilience = True), while the proportion of reduction in inconsistency (PRI) reveals potential contradictions with respect to all other combinations.}
+\label{fig:ttable}
+\end{figure*}
+```
+
+```{=tex}
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 6in, height = 3in]{fig5_necessary_and_sufficient}
+\caption{\textbf{Necessary and sufficient conditions} The analysis of (A) sufficiency and (B) necessity compares the relevance of observed combinations of features for an output. For sufficiency these combinations of features are multiplicative (set intersection, logical AND); while for necessity, these combinations of features are additive (set union, logical OR). The coverage (cov) and inclusion (incl) statistics help comparing the contribution of features to the outcome, while the proportional reduction of inconsistency (PRI) and relevance of necessity (RoN) weigh the relative contribution of each solution with respect to the other solutions.}
+\label{fig:necsuf}
+\end{figure*}
+```
+
+```{=tex}
+\begin{figure*}[ht]
+\centering
+\includegraphics[width = 6in, height = 3in]{fig6_solutions}
+\caption{\textbf{Parsimonious solutions} Minimal set of conditions (rows) that can lead to different types of outcomes (resilience, transformation, or loss of resilience). Each term is a set of sufficient conditions that combined lead to a full minimal parsimonious solution. For example, the outcome resilience can be reached when a case  $n*k*s + N*K + D*s + d*K*S \rightarrow R$. Multiplicative terms (*) means logical AND, and additive terms means logical OR. Inclusion and coverage for sufficiency (inclS, covS), the unique coverage (covU), and the proportional reduction in inconsistency (PRI) allow comparing the different contributions of each term to the solutions.}
+\label{fig:sols}
+\end{figure*}
+```
+
+\pagebreak
+
+
 
 # Supplementary Material {#sec:SM}
 
